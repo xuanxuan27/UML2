@@ -29,7 +29,7 @@ public class UML {
         ModeButton selectBtn = new ModeButton("select", "SelectIcon.png");
         selectBtn.addActionListener(new Mode.Select());
         
-        ModeButton associationLineBtn = new ModeButton("association", "AssociationLineIcon.png");
+        ModeButton associationLineBtn = new ModeButton("association", "AssociationLineIcon2.png");
         associationLineBtn.addActionListener(new Mode.AssociationLine());
         
         ModeButton generalizationLineBtn = new ModeButton("generalization", "GenerationLineIcon.png");

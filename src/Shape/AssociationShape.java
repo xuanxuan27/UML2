@@ -14,29 +14,7 @@ public class AssociationShape extends LineShape{
 	}
 	
 	@Override
-	protected void paintComponent(Graphics g) {
-    	super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.white);
-        g2d.setStroke(new BasicStroke(2));
-        
-        int x = (getWidth() - width) / 2;
-        int y = (getHeight() - height) / 2;
-        
-        if (startX > endX && startY < endY) {
-            g2d.drawLine(x + width, y, x, y + height);
-            drawArrow(g2d, x + width, y, x, y + height);
-        } else if (startX < endX && startY > endY) {
-            g2d.drawLine(x, y + height, x + width, y);
-            drawArrow(g2d, x, y + height, x + width, y);
-        } else {
-            g2d.drawLine(x, y, x + width, y + height);
-            drawArrow(g2d, x, y, x + width, y + height);
-        }
-        
-    }
-	
-	private void drawArrow(Graphics2D g2d, int x1, int y1, int x2, int y2) {
+	public void paintArrow(Graphics2D g2d, int x1, int y1, int x2, int y2) {
 	    int dx = x2 - x1;
 	    int dy = y2 - y1;
 	    double angle = Math.atan2(dy, dx);

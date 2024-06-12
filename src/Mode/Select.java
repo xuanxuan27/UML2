@@ -51,15 +51,4 @@ public class Select implements ActionListener{
 		this.endY = y;
 	}
 
-//	public void updatePosition(int x, int y) {
-//		
-//	}
-//
-//	public void setSelected() {
-//		
-//	}
-//
-//	public void unSelected() {
-//		
-//	}
 }

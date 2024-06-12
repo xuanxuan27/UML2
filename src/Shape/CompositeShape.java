@@ -2,6 +2,7 @@ package Shape;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
@@ -16,35 +17,41 @@ public class CompositeShape extends Shape {
 	private boolean isVisible = true;
 	
 	public CompositeShape(int startX, int startY, int endX, int endY) {
-		super(startX, startY, endX, endY);
+		this.startX = startX;
+		this.startY = startY;
+		this.endX = endX;
+		this.endY = endY;
+		this.width = Math.abs(endX-startX);
+		this.height = Math.abs(endY-startY);
+		
+		// 計算左上角坐標
+        this.x = Math.min(startX, endX);
+        this.y = Math.min(startY, endY);
+        
+        setPreferredSize(new Dimension(width, height));
+        setBounds(this.x, this.y, width, height);
 	}
 	
 	@Override
 	protected void paintComponent(Graphics g) {
-		if(isVisible) {
-			super.paintComponent(g);
-	        Graphics2D g2d = (Graphics2D) g;
-	        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.1f)); // 透明度
-	        g2d.setBackground(Color.white);
-	        g2d.setColor(Color.white);
-	        this.x = (getWidth() - width) / 2; // 計算出長方形左上角 x 坐標
-	        this.y = (getHeight() - height) / 2; // 計算出長方形左上角 y 坐標
-	        
-	        // 繪製長方形
-	        g2d.drawRect(x, y, width-2, height-2);
-	        
-//	        if(startX > endX && startY < endY) {
-//	        	g2d.drawRect(x - width, y, width , height);
-//	        }
-//	        else if (startX < endX && startY > endY) {
-//	        	g2d.drawRect(x, y+height, width, height);
-	//
-//	        }
-//	        else {
-//	        	g2d.drawRect(x, y, width, height);
-//	        }
-	        
-		}
+		if (isVisible) {
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f)); // 透明度
+            g2d.setBackground(Color.white);
+            g2d.setColor(Color.white);
+            
+            // 再次計算寬度和高度，防止在界面調整大小後數值出錯
+            this.width = Math.abs(endX - startX);
+            this.height = Math.abs(endY - startY);
+            
+            // 計算左上角坐標
+            this.x = Math.min(startX, endX);
+            this.y = Math.min(startY, endY);
+            
+            // 繪製長方形
+            g2d.drawRect(0, 0, width, height);
+        }
     	
     }
 	

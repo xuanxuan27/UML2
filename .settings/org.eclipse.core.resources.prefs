@@ -2,6 +2,7 @@ eclipse.preferences.version=1
 encoding//src/Mode/BasicObject.java=UTF-8
 encoding//src/Mode/CompositeObject.java=UTF-8
 encoding//src/Shape/AssociationShape.java=UTF-8
+encoding//src/Shape/CompositionShape.java=UTF-8
 encoding//src/Shape/Port.java=UTF-8
 encoding//src/Shape/Shape.java=UTF-8
 encoding//src/Shape/UsecaseShape.java=UTF-8

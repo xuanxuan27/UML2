@@ -11,9 +11,13 @@ public class Shape extends JPanel {
 	
 	public ArrayList<Port> ports;
 	protected int x, y, width, height;
-    private JLabel label; 
-    private String text = "Basic Object";
+	protected JLabel label; 
+	protected String text = "Basic Object";
     
+	public Shape() {
+		
+	}
+	
 	public Shape(int x, int y, int width, int height) {
 		this.x = x;
 		this.y = y;

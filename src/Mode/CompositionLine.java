@@ -15,7 +15,7 @@ public class CompositionLine extends Line implements ActionListener {
 	}
 	
 	public CompositionLine(int startX, int startY, int endX, int endY){
-		super(startX, startY, endX, endY, new CompositionShape(0,0,0,0));
+		super(startX, startY, endX, endY, new CompositionShape(startX,startY,endX,endY));
 	}
 	
 	@Override

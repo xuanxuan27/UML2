@@ -53,6 +53,9 @@ public class CompositeObject extends BasicObject {
 	public void setEndPoint(int x, int y) {
 		this.endX = x;
 		this.endY = y;
+		if(shape != null)
+			UML.drawPanel.remove(shape);
+		drawObject();
 	}
 
 	@Override

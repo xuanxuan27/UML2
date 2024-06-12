@@ -11,24 +11,29 @@ public class GeneralizationShape extends LineShape {
 		super(startX, startY, endX, endY);
 	}
 	
-	@Override
-	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.white);
-        g2d.setStroke(new BasicStroke(2));
-        
-        int x = (getWidth() - width) / 2; // 左上角 x 座標
-        int y = (getHeight() - height) / 2; // 左上角 y 座標
-        
-        if(startX > endX && startY < endY) {
-        	g2d.drawLine(x + width, y, x , y + height);
-        }
-        else if (startX < endX && startY > endY) {
-        	g2d.drawLine(x, y+height, x+width, y);
-        }
-        else {
-        	g2d.drawLine(x, y, x+width, y+height);
-        }
-    }
+	
+	public void paintArrow(Graphics2D g2d, int x1, int y1, int x2, int y2) {
+		// Calculate the angle of the line
+        double theta = Math.atan2(y2 - y1, x2 - x1);
+
+        // Length of the sides of the triangle
+        int arrowLength = 15;
+        int arrowWidth = 10;
+
+        // Calculate the points for the arrow
+        int[] xPoints = new int[3];
+        int[] yPoints = new int[3];
+
+        xPoints[0] = x2;
+        yPoints[0] = y2;
+
+        xPoints[1] = (int) (x2 - arrowLength * Math.cos(theta - Math.toRadians(45)));
+        yPoints[1] = (int) (y2 - arrowLength * Math.sin(theta - Math.toRadians(45)));
+
+        xPoints[2] = (int) (x2 - arrowLength * Math.cos(theta + Math.toRadians(45)));
+        yPoints[2] = (int) (y2 - arrowLength * Math.sin(theta + Math.toRadians(45)));
+
+        // Draw the arrow
+        g2d.drawPolygon(xPoints, yPoints, 3);
+	}
 }

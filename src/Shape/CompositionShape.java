@@ -11,24 +11,32 @@ public class CompositionShape extends LineShape {
 		super(startX, startY, endX, endY);
 	}
 	
+
 	@Override
-	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.white);
-        g2d.setStroke(new BasicStroke(2));
-        
-        int x = (getWidth() - width) / 2;
-        int y = (getHeight() - height) / 2;
-        
-        if(startX > endX && startY < endY) {
-        	g2d.drawLine(x + width, y, x , y + height);
-        }
-        else if (startX < endX && startY > endY) {
-        	g2d.drawLine(x, y+height, x+width, y);
-        }
-        else {
-        	g2d.drawLine(x, y, x+width, y+height);
-        }
-    }
+	public void paintArrow(Graphics2D g2d, int x1, int y1, int x2, int y2) {
+		// 计算直线的角度
+        double theta = Math.atan2(y2 - y1, x2 - x1);
+
+        // 菱形的半径（即从中心到顶点的距离）
+        int diamondRadius = 10;
+
+        // 计算菱形的四个顶点坐标
+        int[] xPoints = new int[4];
+        int[] yPoints = new int[4];
+
+        xPoints[0] = x2;
+        yPoints[0] = y2;
+
+        xPoints[1] = (int) (x2 - diamondRadius * Math.cos(theta - Math.toRadians(45)));
+        yPoints[1] = (int) (y2 - diamondRadius * Math.sin(theta - Math.toRadians(45)));
+
+        xPoints[2] = (int) (x2 - 2 * diamondRadius * Math.cos(theta));
+        yPoints[2] = (int) (y2 - 2 * diamondRadius * Math.sin(theta));
+
+        xPoints[3] = (int) (x2 - diamondRadius * Math.cos(theta + Math.toRadians(45)));
+        yPoints[3] = (int) (y2 - diamondRadius * Math.sin(theta + Math.toRadians(45)));
+
+        // 画空心菱形
+        g2d.drawPolygon(xPoints, yPoints, 4);
+	}
 }

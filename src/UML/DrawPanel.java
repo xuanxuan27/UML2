@@ -115,7 +115,6 @@ public class DrawPanel extends JPanel {
                     endY = e.getY();
                     selectRegion.setEndPoint(endX, endY);
 
-                    
                     if(selectRegion.shape != null) {
                     	selectIncludedObject();
                     	remove(selectRegion.shape);
@@ -130,7 +129,6 @@ public class DrawPanel extends JPanel {
 		addMouseMotionListener(new MouseMotionAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {
-
             	if(Mode.getMode() == Mode.ModeType.ASSOCIATION || Mode.getMode() == Mode.ModeType.GENERALIZATION || Mode.getMode() == Mode.ModeType.COMPOSITION) {
 
             		if (line != null) {
