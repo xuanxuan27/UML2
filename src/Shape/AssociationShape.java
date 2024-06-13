@@ -15,23 +15,21 @@ public class AssociationShape extends LineShape{
 	
 	@Override
 	public void paintArrow(Graphics2D g2d, int x1, int y1, int x2, int y2) {
-	    int dx = x2 - x1;
-	    int dy = y2 - y1;
-	    double angle = Math.atan2(dy, dx);
-	    int len = (int) Math.sqrt(dx * dx + dy * dy);
+		// Calculate the angle of the line
+        double theta = Math.atan2(y2 - y1, x2 - x1);
 
-	    AffineTransform at = AffineTransform.getTranslateInstance(x1, y1);
-	    at.concatenate(AffineTransform.getRotateInstance(angle));
-	    g2d.transform(at);
+        // Arrow size
+        int arrowLength = 10;
+        int arrowWidth = 5;
 
-	    // 绘制箭头线段
-	    g2d.drawLine(0, 0, len, 0);
-	    // 绘制箭头头部
-	    int arrowSize = 10;
-	    Polygon arrow = new Polygon();
-	    arrow.addPoint(len, 0);
-	    arrow.addPoint(len - arrowSize, arrowSize / 2);
-	    arrow.addPoint(len - arrowSize, -arrowSize / 2);
-	    g2d.fill(arrow);
+        // Calculate the end points of the two lines forming the arrow head
+        int arrowX1 = (int) (x2 - arrowLength * Math.cos(theta + Math.toRadians(30)));
+        int arrowY1 = (int) (y2 - arrowLength * Math.sin(theta + Math.toRadians(30)));
+        int arrowX2 = (int) (x2 - arrowLength * Math.cos(theta - Math.toRadians(30)));
+        int arrowY2 = (int) (y2 - arrowLength * Math.sin(theta - Math.toRadians(30)));
+
+        // Draw the arrow head
+        g2d.drawLine(x2, y2, arrowX1, arrowY1);
+        g2d.drawLine(x2, y2, arrowX2, arrowY2);
 	}
 }

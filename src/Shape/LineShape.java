@@ -19,8 +19,8 @@ public abstract class LineShape extends JPanel {
 		this.startY = startY;
 		this.endX = endX;
 		this.endY = endY;
-		this.width = Math.abs(endX-startX);
-		this.height = Math.abs(endY-startY);
+		this.width = Math.abs(endX-startX)+1;
+		this.height = Math.abs(endY-startY)+1;
 		
         setPreferredSize(new Dimension(width, height));
         setOpaque(false);
