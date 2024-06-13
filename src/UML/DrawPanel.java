@@ -5,6 +5,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.*;
@@ -184,6 +185,29 @@ public class DrawPanel extends JPanel {
                 break;
         }
     }
+    
+    public void selectIncludedObject() {
+        if (selectRegion == null) return;
+
+        for (BasicObject basicObj : basicObjects) {
+            if (basicObj.shape == null) continue;
+
+            Rectangle bounds = basicObj.shape.getBounds();
+            Point[] corners = {
+                    bounds.getLocation(),
+                    new Point(bounds.x + bounds.width, bounds.y),
+                    new Point(bounds.x, bounds.y + bounds.height),
+                    new Point(bounds.x + bounds.width, bounds.y + bounds.height)
+            };
+
+            if (Arrays.stream(corners)
+                    .map(corner -> SwingUtilities.convertPoint(basicObj.shape.getParent(), corner, selectRegion.shape))
+                    .allMatch(selectRegion.shape::contains)) {
+                if (!includedObjs.contains(basicObj)) includedObjs.add(basicObj);
+                if (!basicObj.isSelect) basicObj.setSelect(true);
+            }
+        }
+    }
 
     public void findSelectedObject() {
         for (BasicObject basicObj : basicObjects) {
@@ -191,14 +215,14 @@ public class DrawPanel extends JPanel {
                 if (basicObj.isSelect == false) {
                     mouseLocation = getMousePosition();
                     selectedObj = basicObj;
-                    basicObj.setSelected();
+                    basicObj.setSelect(true);
                     if (basicObj.getClass().getName() == "Mode.CompositeObject") {
                         compositeObj = (CompositeObject) basicObj;
                     }
                 }
             } else {
                 if (basicObj.isSelect == true) {
-                    basicObj.unSelected();
+                	basicObj.setSelect(false);
                     selectedObj = null;
                 }
             }
@@ -210,35 +234,5 @@ public class DrawPanel extends JPanel {
     public BasicObject getSelectedObject() {
         return selectedObj;
     }
-
-    public void selectIncludedObject() {
-        if (selectRegion != null) {
-            for (BasicObject basicObj : basicObjects) {
-                if (basicObj.shape != null) {
-                    Rectangle bounds = basicObj.shape.getBounds();
-                    Point upperLeft = bounds.getLocation();
-                    Point upperRight = new Point(bounds.x + bounds.width, bounds.y);
-                    Point lowerLeft = new Point(bounds.x, bounds.y + bounds.height);
-                    Point lowerRight = new Point(bounds.x + bounds.width, bounds.y + bounds.height);
-
-                    Point convertedUpperLeft = SwingUtilities.convertPoint(basicObj.shape.getParent(), upperLeft, selectRegion.shape);
-                    Point convertedUpperRight = SwingUtilities.convertPoint(basicObj.shape.getParent(), upperRight, selectRegion.shape);
-                    Point convertedLowerLeft = SwingUtilities.convertPoint(basicObj.shape.getParent(), lowerLeft, selectRegion.shape);
-                    Point convertedLowerRight = SwingUtilities.convertPoint(basicObj.shape.getParent(), lowerRight, selectRegion.shape);
-
-                    if (selectRegion.shape.contains(convertedUpperLeft) &&
-                        selectRegion.shape.contains(convertedUpperRight) &&
-                        selectRegion.shape.contains(convertedLowerLeft) &&
-                        selectRegion.shape.contains(convertedLowerRight)) {
-                        if (!includedObjs.contains(basicObj)) {
-                            includedObjs.add(basicObj);
-                        }
-                        if (!basicObj.isSelect) {
-                            basicObj.setSelected();
-                        }
-                    }
-                }
-            }
-        }
-    }
+    
 }

@@ -55,29 +55,29 @@ public class Shape extends JPanel {
         return getBounds().contains(x, y);
     }
     
-    public void setSelect() {
-    	portVisible(ports);
+    public void setSelect(boolean select) {
+    	portVisible(ports, select);
     }
     
-    public void setUnselect() {
-    	portInvisible(ports);
-    }
+//    public void setUnselect() {
+//    	portInvisible(ports);
+//    }
     
 	public void updatePosition(int x, int y) {
         setLocation(x, y); // 更新物件位置
     }
 	
-	public void portVisible(ArrayList<Port> ports) {
+	public void portVisible(ArrayList<Port> ports, boolean select) {
 		for(Port port: ports) {
-			port.setVisible();
+			port.setVisible(select);
 		}
 	}
 	
-	public void portInvisible(ArrayList<Port> ports) {
-		for(Port port: ports) {
-			port.setInvisible();
-		}
-	}
+//	public void portInvisible(ArrayList<Port> ports) {
+//		for(Port port: ports) {
+//			port.setInvisible();
+//		}
+//	}
 	
 	public void setText(String text) {
         this.text = text;

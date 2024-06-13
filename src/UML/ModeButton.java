@@ -36,9 +36,9 @@ public class ModeButton extends JButton{
         setPreferredSize(new Dimension(size, size));
         setBackground(Color.black);
         
-        if(this.mode == "select") {
-        	setSelected(true);
-        }
+//        if(this.mode == "select") {
+//        	setSelected(true);
+//        }
     }
 	
 	public void setSelected(boolean selected) {

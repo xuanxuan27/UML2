@@ -58,7 +58,6 @@ public class UML {
         JMenuBar toolBar = new JMenuBar();
         toolBar.setFocusable(false); 
 
-        // 创建按钮并添加到工具栏
         JMenu fileMenu = new JMenu("File");
         JMenuItem newMenuItem = new JMenuItem("New File");
         newMenuItem.addActionListener(new NewFile());
@@ -71,12 +70,12 @@ public class UML {
         
         JMenuItem groupMenuItem = new JMenuItem("Group");
         groupMenuItem.addActionListener(new Group());
-        JMenuItem upgroupMenuItem = new JMenuItem("Ungroup");
-        upgroupMenuItem.addActionListener(new Ungroup());
+        JMenuItem ungroupMenuItem = new JMenuItem("Ungroup");
+        ungroupMenuItem.addActionListener(new Ungroup());
         
         editMenu.add(renameMenuItem);
         editMenu.add(groupMenuItem);
-        editMenu.add(upgroupMenuItem);
+        editMenu.add(ungroupMenuItem);
 
         toolBar.add(fileMenu);
         toolBar.add(editMenu);

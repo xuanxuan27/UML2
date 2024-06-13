@@ -51,10 +51,10 @@ public class Port {
         return point;
 	}
     
-    public void setVisible() {
-    	isVisible = true;
+    public void setVisible(boolean select) {
+    	isVisible = select;
     }
-    public void setInvisible() {
-    	isVisible = false;
-    }
+//    public void setInvisible() {
+//    	isVisible = false;
+//    }
 }

@@ -70,15 +70,20 @@ public abstract class BasicObject{
 
 	}
 	
-	public void setSelected() {
-		isSelect = true;
-		shape.setSelect();
+	public void setSelect(boolean select) {
+		isSelect = select;
+		shape.setSelect(select);
 	}
 	
-	public void unSelected() {
-		isSelect = false;
-		shape.setUnselect();
-	}
+//	public void setSelected() {
+//		isSelect = true;
+//		shape.setSelect();
+//	}
+//	
+//	public void unSelected() {
+//		isSelect = false;
+//		shape.setUnselect();
+//	}
 	
 	public void updatePosition(int x, int y) {
 		

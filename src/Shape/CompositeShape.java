@@ -68,14 +68,10 @@ public class CompositeShape extends Shape {
 	}
 	
 	@Override
-	public void setSelect() {
-    	isVisible = true;
+	public void setSelect(boolean select) {
+    	isVisible = select;
     }
 	
-	@Override
-    public void setUnselect() {
-    	isVisible = false;
-    }
 	
 	@Override
 	public void setText(String text) {

@@ -33,7 +33,7 @@ public class CompositeObject extends BasicObject {
 		for(BasicObject obj : UML.drawPanel.basicObjects) {
 			String name = obj.getClass().getName();
 		}
-		setSelected();
+		setSelect(true);
 		
 	}
 	
@@ -53,9 +53,7 @@ public class CompositeObject extends BasicObject {
 	public void setEndPoint(int x, int y) {
 		this.endX = x;
 		this.endY = y;
-		if(shape != null)
-			UML.drawPanel.remove(shape);
-		drawObject();
+		
 	}
 
 	@Override
@@ -77,7 +75,7 @@ public class CompositeObject extends BasicObject {
 	    int newY = location.y + dy;
 	    shape.setLocation(newX, newY);
 	    for (BasicObject obj : includedObjects) {
-	        obj.updatePosition(dx, dy); // 更新成员对象的位置
+	        obj.updatePosition(dx, dy);
 	    }
 
 	}
@@ -87,25 +85,35 @@ public class CompositeObject extends BasicObject {
 			obj.updateConnections(x, y);
 		}
 	}
-
-	@Override
-	public void setSelected() {
-		isSelect = true;
-		shape.setSelect();
-		for (BasicObject obj : includedObjects) {
-			obj.isSelect = true;
-			obj.shape.setSelect();
-		}
-	}
 	
 	@Override
-	public void unSelected() {
-		isSelect = false;
-		shape.setUnselect();
+	public void setSelect(boolean select) {
+		isSelect = select;
+		shape.setSelect(select);
 		for (BasicObject obj : includedObjects) {
-			obj.isSelect = false;
-			obj.shape.setUnselect();
+			obj.isSelect = select;
+			obj.shape.setSelect(select);
 		}
 	}
+
+//	@Override
+//	public void setSelected() {
+//		isSelect = true;
+//		shape.setSelect();
+//		for (BasicObject obj : includedObjects) {
+//			obj.isSelect = true;
+//			obj.shape.setSelect();
+//		}
+//	}
+	
+//	@Override
+//	public void unSelected() {
+//		isSelect = false;
+//		shape.setUnselect();
+//		for (BasicObject obj : includedObjects) {
+//			obj.isSelect = false;
+//			obj.shape.setUnselect();
+//		}
+//	}
 
 }

@@ -41,7 +41,6 @@ public abstract class LineShape extends JPanel {
         int y2 = startY < endY ? height : 0;
 
         g2d.drawLine(x1, y1, x2, y2);
-
         paintArrow(g2d, x1, y1, x2, y2);
     }
 	
