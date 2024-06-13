@@ -16,7 +16,7 @@ public class AssociationShape extends LineShape{
 	@Override
 	public void paintArrow(Graphics2D g2d, int x1, int y1, int x2, int y2) {
 		// Calculate the angle of the line
-        double theta = Math.atan2(y2 - y1, x2 - x1);
+        double theta = Math.atan2(y2 - y1+1, x2 - x1+1);
 
         // Arrow size
         int arrowLength = 10;

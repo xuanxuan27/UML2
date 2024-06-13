@@ -4,6 +4,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Polygon;
 
 public class CompositionShape extends LineShape {
 	
@@ -38,5 +39,6 @@ public class CompositionShape extends LineShape {
 
         // 画空心菱形
         g2d.drawPolygon(xPoints, yPoints, 4);
+		
 	}
 }
